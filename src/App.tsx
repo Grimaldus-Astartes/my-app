@@ -5,8 +5,8 @@ import Form from './views/Form'
 
 function App() {
   return (
-    <div className="flex h-full max-w-full  justify-content-center align-items-center">
-      <Form />
+    <div className="flex flex-column h-full max-w-full justify-content-center  align-items-center">
+      <Form/>
     </div>
   );
 }

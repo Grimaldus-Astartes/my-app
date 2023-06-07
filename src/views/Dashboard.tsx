@@ -1,4 +1,6 @@
 import React from "react";
+import { useAppDispatch, useAppSelector } from "../state/hooks";
+import { CelularState } from "../state/celularSlice";
 
 import { TabView, TabPanel } from "primereact/tabview";
 import { DataTable } from "primereact/datatable";
@@ -7,11 +9,6 @@ import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 
-interface Product {
-  empresa: string;
-  telefono: string;
-  usuario: string;
-}
 
 interface ColumnMeta {
   field: string;
@@ -19,11 +16,7 @@ interface ColumnMeta {
 }
 
 const Dashboard = () => {
-  const products: Product[] = [
-    { empresa: "La madrileña", telefono: "333 123 1234", usuario: "JONASCITO" },
-    { empresa: "La madrileña", telefono: "333 123 1234", usuario: "JONASCITO" },
-    { empresa: "La madrileña", telefono: "333 123 1234", usuario: "JONASCITO" },
-  ];
+  const products: CelularState[] = useAppSelector(state => state.celular)
   const columns: ColumnMeta[] = [
     { field: "empresa", header: "Empresa" },
     { field: "telefono", header: "Telefono" },
