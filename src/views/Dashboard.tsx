@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../state/hooks";
-import { CelularState } from "../state/celularSlice";
+import { selectCelular } from "../state/celularSlice";
 
 import { TabView, TabPanel } from "primereact/tabview";
 import { DataTable } from "primereact/datatable";
@@ -9,19 +9,40 @@ import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 
+enum Field {
+  empresa = "empresa",
+  telefono = "telefono",
+  region = "region",
+  localidad = "localidad",
+  area = "area",
+}
 
 interface ColumnMeta {
-  field: string;
+  field: Field;
   header: string;
 }
 
+interface CelularData {
+  idFormCelular: number;
+  empresa: string;
+  telefono: string;
+  region: string;
+  localidad: string;
+  area: string;
+}
+
 const Dashboard = () => {
-  const products: CelularState[] = useAppSelector(state => state.celular)
+  let products: CelularData[] = useAppSelector(selectCelular);
   const columns: ColumnMeta[] = [
-    { field: "empresa", header: "Empresa" },
-    { field: "telefono", header: "Telefono" },
-    { field: "usuario", header: "Usuario" },
+    { field: Field.empresa, header: "Empresa" },
+    { field: Field.telefono, header: "Telefono" },
+    { field: Field.region, header: "Region" },
+    { field: Field.localidad, header: "Localidad" },
+    { field: Field.area, header: "Area" },
   ];
+
+  useEffect(() => {}, [products]);
+  console.log(products);
   return (
     <Card className="min-w-min max-w-full w-10">
       <div className="w-12">
@@ -47,7 +68,7 @@ const Dashboard = () => {
                 <InputText placeholder="Keyword Search" />
               </span>
             </div>
-            <DataTable value={products}>
+            <DataTable value={[]}>
               {columns.map((col, i) => (
                 <Column key={col.field} field={col.field} header={col.header} />
               ))}
@@ -61,7 +82,7 @@ const Dashboard = () => {
                 <InputText placeholder="Keyword Search" />
               </span>
             </div>
-            <DataTable value={products}>
+            <DataTable value={[]}>
               {columns.map((col, i) => (
                 <Column key={col.field} field={col.field} header={col.header} />
               ))}
