@@ -1,11 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-
-type CatalogValue = {
-  idCatalogValue: number;
-  idCatalog: string;
-  value: string;
-};
+import { CatalogValue } from "./types";
 
 export interface CelularState {
   idFormCelular: number;

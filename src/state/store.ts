@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import celularReducer from './celularSlice'
+import catalogoSlice from './catalogoSlice'
 
 export const store = configureStore({
   reducer: {
-    celular: celularReducer
+    celular: celularReducer,
+    catalogo: catalogoSlice
   },
 });
 

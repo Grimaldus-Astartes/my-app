@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../state/hooks";
-import { selectCelular } from "../state/celularSlice";
+ import { selectCelular } from "../state/celularSlice";
 
 import { TabView, TabPanel } from "primereact/tabview";
 import { DataTable } from "primereact/datatable";
@@ -32,7 +32,7 @@ interface CelularData {
 }
 
 const Dashboard = () => {
-  let products: CelularData[] = useAppSelector(selectCelular);
+   let products = useAppSelector(selectCelular);
   const columns: ColumnMeta[] = [
     { field: Field.empresa, header: "Empresa" },
     { field: Field.telefono, header: "Telefono" },
@@ -42,7 +42,7 @@ const Dashboard = () => {
   ];
 
   useEffect(() => {}, [products]);
-  console.log(products);
+  
   return (
     <Card className="min-w-min max-w-full w-10">
       <div className="w-12">
