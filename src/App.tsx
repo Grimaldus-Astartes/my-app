@@ -1,20 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Dashboard from "./views/Dashboard";
 import Form from "./views/Form";
 
-import { getCelulares } from "./web/getService";
-import { loadCelulares } from "./state/celularSlice";
+import { fetchCatalogs, selectCatalogStatus } from "./state/catalogoSlice";
+import { useAppSelector, useAppDispatch } from "./state/hooks";
 
 function App() {
+  const dispatch = useAppDispatch();
+  const catalogsStatus = useAppSelector(selectCatalogStatus);
+  const [switchView, setView] = useState(false);
+
   useEffect(() => {
-    getCelulares()
-      .then((res) => loadCelulares(res.data))
-      .catch((err) => console.log(err));
+    if (catalogsStatus === 'idle'){
+      console.log('aaa');
+      dispatch(fetchCatalogs())
+    }
   }, []);
+
   return (
     <div className="flex flex-column h-full max-w-full justify-content-center  align-items-center">
-      <Form />
+      {switchView ? <Form /> : <Dashboard />}
     </div>
   );
 }
