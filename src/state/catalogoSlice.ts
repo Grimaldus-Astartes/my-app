@@ -32,9 +32,10 @@ const catalogoSlice = createSlice({
       })
       .addCase(
         fetchCatalogs.fulfilled,
-        (state, action: PayloadAction<CatalogValue[]>) => {
+        (state, action ) => {
+          
           state.status = EnumRequestStatus.SUCCEEDED;
-          state.data = state.data.concat(action.payload);
+          state.data = action.payload as CatalogValue[];
         }
       )
       .addCase(fetchCatalogs.rejected, (state, action) => {

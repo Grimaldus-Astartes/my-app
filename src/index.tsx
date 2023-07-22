@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import {store} from "./state/store";
+import { store } from "./state/store";
 
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -20,9 +20,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </Provider>
 );
 

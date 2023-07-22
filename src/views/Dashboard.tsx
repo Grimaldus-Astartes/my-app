@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../state/hooks";
  import { selectCelular } from "../state/celularSlice";
+import { getComputadoras } from "../web/getService";
+import { CatalogValue, ComputadoraType } from "../state/types";
 
 import { TabView, TabPanel } from "primereact/tabview";
 import { DataTable } from "primereact/datatable";
@@ -31,6 +33,13 @@ interface CelularData {
   area: string;
 }
 
+type Product = {
+  idEmpresa: string;
+  nombreUsuario: string
+  idTelefonoAsignado: CatalogValue
+  idRegion: CatalogValue
+}
+
 const Dashboard = () => {
    let products = useAppSelector(selectCelular);
   const columns: ColumnMeta[] = [
@@ -40,8 +49,13 @@ const Dashboard = () => {
     { field: Field.localidad, header: "Localidad" },
     { field: Field.area, header: "Area" },
   ];
+  const [computers, setComputers] = useState<ComputadoraType[] | ComputadoraType>([]);
+  
 
-  useEffect(() => {}, [products]);
+  useEffect(() => {
+    getComputadoras().then(req => setComputers(req.data)
+    )
+  }, [products]);
   
   return (
     <Card className="min-w-min max-w-full w-10">

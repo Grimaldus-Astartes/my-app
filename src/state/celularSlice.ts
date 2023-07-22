@@ -1,20 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { CatalogValue } from "./types";
+import { CelularType } from "./types";
 
-export interface CelularState {
-  idFormCelular: number;
-  idEmpresa: CatalogValue;
-  idTelefonoAsignado: CatalogValue;
-  nombreUsuario: string;
-  idRegion: CatalogValue;
-  idLocalidad: CatalogValue;
-  idArea: CatalogValue;
-  idEquipo: CatalogValue;
-  modelo: string;
-}
 
-const initialState: CelularState[] = [
+
+const initialState: CelularType[] = [
   {
     idFormCelular: 3,
     idEmpresa: {
